@@ -20,18 +20,44 @@ const height: UseNumericStateTuple = [currentAge, (h) => {
 console.group('Tuples - užduotys');
 {
   // ↓↓↓↓ Tipus apraškite čia ↓↓↓↓
+  type PersonName = [string, number]
+
+  type Person = {
+    name: string,
+    age: number
+  }
+  type Dog = {
+    name: string,
+    breed: string,
+    age: number
+  }
+  type OwnerAndDog = [Person, Dog]
 
   // ↑↑↑↑ Tipus apraškite čia ↑↑↑↑
 
   console.group('1. Sukurkite žmogaus vardo ir amžiaus rinkinį');
   {
-    // sprendimo pavyzdžius spausdinkite čia 
+    const name1: PersonName = ['Domas', 29]
+    const name2: PersonName = ['Audra', 35]
+
+    console.log(name1, name2)
   }
   console.groupEnd();
 
   console.group('2. Sukurkite šuns šeimininko ir šuns rinkinį(pradžioje teks sukurti Šuns ir Šeiminiko tipus)');
   {
-    // sprendimo pavyzdžius spausdinkite čia 
+    const test1: OwnerAndDog = [
+      {
+        name: 'Domas',
+        age: 29,
+      },
+      {
+        name: 'Dog',
+        breed: 'Mops',
+        age: 8,
+      }
+    ]
+    console.log(test1)
   }
   console.groupEnd();
 
