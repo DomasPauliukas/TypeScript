@@ -1,5 +1,7 @@
 /*
   Aprašant masyvų tipus reikia nurodyti kokie elementai sudarys masyvai, galimos 2 sintaksės:
+/*
+  Aprašant masyvų tipus reikia nurodyti kokie elementai sudarys masyvai, galimos 2 sintaksės:
     * tipas[] -> number[], string[], Person[] ir t.t.
     * Array<tipas> -> Array<number>, Array<string>, Array<Person> ir t.t.
 */
@@ -86,8 +88,8 @@ console.group('Užduotys');
   {
     const numbers: number[] = [1, -8, -6, 7, 5, 1];
 
-    function addPositiveNumbers(arr) {
-      const positiveNumberReducer = (sum, num) => (num > 0 ? sum + num : sum);
+    function addPositiveNumbers(arr: number[]) {
+      const positiveNumberReducer = (sum: number, num: number) => (num > 0 ? sum + num : sum);
 
       return arr.reduce(positiveNumberReducer, 0);
     }
@@ -107,6 +109,20 @@ console.group('Užduotys');
        * ['Lietuvos', 'Respublikos', 'Televizija'] -> LRT
        * ['Loughing', 'Out', 'Loud'] -> LOL
     */
+
+      // const wordsArray = ['Lietuviškas', 'Nepriklausomas', 'Kanalas']
+
+      function getAllFirstLetters (wordsArray: string[]) {
+        let firstLetters = ''
+
+      wordsArray.forEach(word=> {
+        firstLetters += word[0]
+      })
+      console.log(firstLetters)
+      }
+
+      getAllFirstLetters (['Lietuva', 'Nepriklausoma', 'Kanalas'])
+
   }
   console.groupEnd();
 
@@ -118,6 +134,18 @@ console.group('Užduotys');
        * [98, 74, 5, 0] -> 0
        * [17, 10, 5] -> 850
     */
+
+    function multipleNumbers (numbers: number[]) {
+      let initialValue = 1
+      numbers.forEach(number => {
+        initialValue = initialValue * number
+      })
+      console.log(initialValue)
+    }
+
+    multipleNumbers ([17, 10, 5])
+
+
   }
   console.groupEnd();
 }

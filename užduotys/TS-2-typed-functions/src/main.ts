@@ -1,4 +1,4 @@
-/*
+  /*
   Funkcijos aprašomos tokiu būdu:
     * apibūdinami(aprašomi tipais) visi funkcijos parametrai
     * nurodomas funkcijos iškvietimo grąžinimo tipas
@@ -49,21 +49,21 @@ printRedText('printRed funkcijos argumentas');
 
 console.group('1. Aprašykite funkcijoms tipus jas deklaruojant');
 {
-  const multiply = (a, b) => {
+  const multiply = (a: number, b: number) => {
     return a * b;
   };
 
-  const power = function (base, power) {
+  const power = function (base: number, power: number) {
     return base ** power;
   };
 
-  const squareRoot = (number) => number ** (1 / 2);
+  const squareRoot = (number: number) => number ** (1 / 2);
 
-  const root = function (base, nthRoot) {
+  const root = function (base: number, nthRoot:number) {
     return base ** (1 / nthRoot);
   }
 
-  const printBlueText = (text) => console.log(`%c${text}`, 'color: #0000ee');
+  const printBlueText = (text: string): void => console.log(`%c${text}`, 'color: #0000ee');
 
   const num1: number = 16;
   const num2: number = 4;
@@ -81,22 +81,26 @@ console.groupEnd();
 
 
 console.group('2. Aprašykite funkcijų tipus prieš deklaruojant funkcijas');
+
+type UnaryNumberProductNumberFunction = (number: number) => number;
+type UnaryStringProductVoidFunction = (str: string) => void;
+type BinaryNumberProductNumberFunction = (num1: number, num2: number) => number;
 {
-  const multiply = (a, b) => {
+  const multiply: BinaryNumberProductNumberFunction = (a, b) => {
     return a * b;
   };
-
-  const power = function (base, power) {
+;
+  const power: BinaryNumberProductNumberFunction = function (base, power) {
     return base ** power;
   };
 
-  const squareRoot = (number) => number ** (1 / 2);
+  const squareRoot: UnaryNumberProductNumberFunction = (number) => number ** (1 / 2);
 
-  const root = function (base, nthRoot) {
+  const root: BinaryNumberProductNumberFunction = function (base, nthRoot) {
     return base ** (1 / nthRoot);
   }
 
-  const printBlueText = (text) => console.log(`%c${text}`, 'color: #0000ee');
+  const printBlueText: UnaryStringProductVoidFunction = (text) => console.log(`%c${text}`, 'color: #0000ee');
 
   const num1: number = 16;
   const num2: number = 4;

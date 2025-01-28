@@ -1,4 +1,4 @@
-/*
+ /*
   Objektų tipai aprašomi aprašant kiekvieną savybę atskirai. Jeigu savybė nėra privaloma, prie savybės pavadinimo rašome klaustuką
 */
 
@@ -53,7 +53,13 @@ printCouple(person1, person2);
 // Atlikite užduotis, funkcijas aprašydami tipais
 console.group('1. Sukurkite funkciją kuri patikrina ar žmogus yra pilnametis');
 {
-  const isAdult = () => {};
+  const isAdult = (person: Person) => {
+    if (person.age > 18){
+      return true
+    } else {
+      return false
+    }
+  };
   
   console.log({
     [createFullname(person1)]: isAdult(person1),
@@ -65,7 +71,13 @@ console.groupEnd();
 
 console.group('2. Sukurkite funkciją, kuri patikrina ar Person tipo objektas turi ūgį ir svorį');
 {
-  const isFullyDescribedPerson = () => {};
+  const isFullyDescribedPerson = (person: Person) => {
+    if (person.height && person.weight){
+      return 'fully described'
+    } else {
+      return 'Not fully described'
+    }
+  };
   
   console.log({
     [createFullname(person1)]: isFullyDescribedPerson(person1),
@@ -77,7 +89,9 @@ console.groupEnd();
 
 console.group('3. Sukurkite funkciją, kuri grąžina žmogaus incialus');
 {
-  const createInitials = () => {};
+  const createInitials = (person: Person) => {
+    return person.name[0] + person.surname[0]   
+  };
   
   console.log({
     [createFullname(person1)]: createInitials(person1),
@@ -86,4 +100,3 @@ console.group('3. Sukurkite funkciją, kuri grąžina žmogaus incialus');
   });
 }
 console.groupEnd();
-
