@@ -37,27 +37,59 @@ enum WeekDayNamesLT {
 console.group('Literal types - užduotys');
 {
   // ↓↓↓↓ Tipus ir užduotims bendrus kintamuosius aprašykite čia ↓↓↓↓
+  enum LithuanianCity {
+    Kaunas = 'Kaunas',
+    Vilnius = 'Vilnius',
+    Klaipeda = 'Klaipeda',
+    Siauliai = 'Siauliai',
+    Panevezys = 'Panevezys',
+  };
 
+  enum LargestCountries {
+    China,
+    India,
+    UnitedStates,
+    Indonesia,
+    Pakistan,
+  };
+
+  enum LargestBvp {
+    Lithuania = 1,
+    Latvia,
+    Estonia,
+    Finland,
+    Sweden,
+    Norway,
+  }
   // ↑↑↑↑ Tipus ir užduotims bendrus kintamuosius aprašykite čia ↑↑↑↑
 
   console.group("1. Sukurkite 5 didžiausių Lietuvos miestų išvardinimą.");
   {
-    // sprendimą|sprendimo pavyzdžius spausdinkite čia 
+    const city1: LithuanianCity = LithuanianCity.Kaunas;
+    const city2: LithuanianCity = LithuanianCity.Klaipeda;
+    const city6: LithuanianCity = LithuanianCity.Vilnius;
+
+    console.log({ city1, city2, city6 });
+
   }
   console.groupEnd();
 
   console.group('2. Sukurkite 5 šalių su didžiausiu gyventojų skaičiumi skaitinį išvardinimą.');
   {
-    // sprendimą|sprendimo pavyzdžius spausdinkite čia 
+    const largestCountries: LargestCountries[] = [LargestCountries.China, LargestCountries.Pakistan];
+
+    console.log(largestCountries);
   }
   console.groupEnd();
 
   console.group('3. Sukurkite 5 šalių su didžiausiu BVP skaitinį išvardinimą pradedant "1".');
   {
-    // sprendimą|sprendimo pavyzdžius spausdinkite čia 
+    const largestBvp: LargestBvp[] = [LargestBvp.Lithuania, LargestBvp.Finland]
+
+    console.log(largestBvp)
+
   }
   console.groupEnd();
-
 }
 console.groupEnd();
 
