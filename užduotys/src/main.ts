@@ -165,30 +165,81 @@ console.groupEnd();
 
 console.groupCollapsed('3. Sukurtite masyvą su vardais, pavardėmis ir lytimi, pagal pradinį žmonių masyvą');
 {
+  type TaskProps = {
+    name: Person['name'],
+    surname: Person['surname'],
+    sex: Person['sex'],
+  }
 
+  const selectTaskProps = ({name, surname, sex}: Person): TaskProps => ({name, surname, sex})
+
+  const result: TaskProps [] = people.map(selectTaskProps)
+  
+  console.log(result)
 }
 console.groupEnd();
 
 console.groupCollapsed('4. Suformuokite visų vyrų masyvą');
 {
+  type Male = Omit<Person, 'sex'> & { sex: 'male' }
+
+  const isMale = ({sex}: Person): boolean => sex === 'male'
+
+  const result: Male[] = people.filter(isMale) as Male[]
+
+  console.log(result)
 
 }
 console.groupEnd();
 
 console.groupCollapsed('5. Suformuokite visų moterų masyvą');
 {
+  type Female = Omit<Person, 'sex'> & {sex: 'female'}
+
+  const isFemale = ({sex}: Person) => sex === 'female'
+  
+  const result: Female[] = people.filter(isFemale) as Female[]
+  
+  console.log(result)
 
 }
 console.groupEnd();
 
 console.groupCollapsed('6. Suformuokite objektų masyvą su žmonių vardais ir pavardėm, kurie turi mašinas');
 {
+  type Identity = {
+    name: Person['name'],
+    surname: Person['surname'],
+  }
+
+// 1 BUDAS
+  const personHasCar = ({ hasCar }: Person): Boolean => Boolean(hasCar)
+
+  const createIdentity = ({name, surname}: Person): Identity => ({name, surname})
+
+  const peopleWithCars: Person[] = people.filter(personHasCar)
+
+  const result: Identity[] = peopleWithCars.map(createIdentity)
+  console.log(result)
+  
+// 2 BUDAS
+  const identityReducer = (result: Identity[], {name, surname, hasCar}: Person): Identity[] => {
+    if (hasCar) result.push({name, surname})
+      return result
+  }
+  console.log(people.reduce(identityReducer, []))
+
 
 }
 console.groupEnd();
 
 console.groupCollapsed('7. Suformuokite objektų masyvą iš žmonių kurie yra susituokę');
 {
+
+  const isMarried = ({married}: Person): Boolean => Boolean(married)
+
+  const answer: Person[] = people.filter(isMarried) 
+  console.table(answer)
 
 }
 console.groupEnd();
@@ -207,18 +258,48 @@ console.groupEnd();
 
 console.groupCollapsed('9. Performuokite žmonių masyvą, jog kiekvieno žmogaus savybė "income", taptų "salary"');
 {
+  type NewPerson = Omit<Person, 'income'> & { salary?: Person['income'] }
 
+  const changePersonObj = ({income, ...people}: Person): NewPerson => {
+    const result: NewPerson = {...people}
+    if (income) {
+      result.salary = income
+    }
+    return result
+  }
+
+  const changedObj: NewPerson[] = people.map(changePersonObj) 
+  console.log(changedObj)
 }
 console.groupEnd();
 
 console.groupCollapsed('10. Suformuokite žmonių masyvą, kuriame nebūtų lyties, vardo ir pavardės');
 {
+  type NewObject = Omit<Person, 'sex'|'name'|'surname'>
+
+  const createNewObject = ({sex, name, surname, ...people}: Person): NewObject => people
+
+  const result = people.map(createNewObject)
+
+  console.log(result)
 
 }
 console.groupEnd();
 
 console.groupCollapsed('11. Suformuokite žmonių masyvą, kuriame "name" ir "surname" savybės, būtų pakeistos "fullname" savybe');
 {
+  type Fullname = Omit<Person, 'name'|'surname'> & {fullname: string}
+
+  const createFullnamePerson = ({name, surname, ...people}: Person): Fullname => ({
+    ...people,
+    fullname: name + ' ' + surname
+  })
+  
+  const newName: Fullname[] = people.map(createFullnamePerson) 
+
+  console.log(newName)
+
+
 
 }
 console.groupEnd();

@@ -76,22 +76,45 @@ console.groupCollapsed('2. Sukurkite funkciją, kuri paverčia žmogaus objektą
 console.groupEnd();
 console.groupCollapsed('3. Sukurtite masyvą su vardais, pavardėmis ir lytimi, pagal pradinį žmonių masyvą');
 {
+    const selectTaskProps = ({ name, surname, sex }) => ({ name, surname, sex });
+    const result = people.map(selectTaskProps);
+    console.log(result);
 }
 console.groupEnd();
 console.groupCollapsed('4. Suformuokite visų vyrų masyvą');
 {
+    const isMale = ({ sex }) => sex === 'male';
+    const result = people.filter(isMale);
+    console.log(result);
 }
 console.groupEnd();
 console.groupCollapsed('5. Suformuokite visų moterų masyvą');
 {
+    const isFemale = ({ sex }) => sex === 'female';
+    const result = people.filter(isFemale);
+    console.log(result);
 }
 console.groupEnd();
 console.groupCollapsed('6. Suformuokite objektų masyvą su žmonių vardais ir pavardėm, kurie turi mašinas');
 {
+    const personHasCar = ({ hasCar }) => Boolean(hasCar);
+    const createIdentity = ({ name, surname }) => ({ name, surname });
+    const peopleWithCars = people.filter(personHasCar);
+    const result = peopleWithCars.map(createIdentity);
+    console.log(result);
+    const identityReducer = (result, { name, surname, hasCar }) => {
+        if (hasCar)
+            result.push({ name, surname });
+        return result;
+    };
+    console.log(people.reduce(identityReducer, []));
 }
 console.groupEnd();
 console.groupCollapsed('7. Suformuokite objektų masyvą iš žmonių kurie yra susituokę');
 {
+    const isMarried = ({ married }) => Boolean(married);
+    const answer = people.filter(isMarried);
+    console.table(answer);
 }
 console.groupEnd();
 console.groupCollapsed('8. Sukurkite objektą, kuriame būtų apskaičiuotas vairuojančių žmonių kiekis pagal lytį');
@@ -100,14 +123,32 @@ console.groupCollapsed('8. Sukurkite objektą, kuriame būtų apskaičiuotas vai
 console.groupEnd();
 console.groupCollapsed('9. Performuokite žmonių masyvą, jog kiekvieno žmogaus savybė "income", taptų "salary"');
 {
+    const changePersonObj = ({ income, ...people }) => {
+        const result = { ...people };
+        if (income) {
+            result.salary = income;
+        }
+        return result;
+    };
+    const changedObj = people.map(changePersonObj);
+    console.log(changedObj);
 }
 console.groupEnd();
 console.groupCollapsed('10. Suformuokite žmonių masyvą, kuriame nebūtų lyties, vardo ir pavardės');
 {
+    const createNewObject = ({ sex, name, surname, ...people }) => people;
+    const result = people.map(createNewObject);
+    console.log(result);
 }
 console.groupEnd();
 console.groupCollapsed('11. Suformuokite žmonių masyvą, kuriame "name" ir "surname" savybės, būtų pakeistos "fullname" savybe');
 {
+    const createFullnamePerson = ({ name, surname, ...people }) => ({
+        ...people,
+        fullname: name + ' ' + surname
+    });
+    const newName = people.map(createFullnamePerson);
+    console.log(newName);
 }
 console.groupEnd();
 //# sourceMappingURL=main.js.map
