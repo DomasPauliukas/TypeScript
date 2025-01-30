@@ -87,5 +87,7 @@ console.group(`
         { name: 'Šidelė', surname: 'Gyslovienė', avgMonthlyPay: 1500 },
         { name: 'Užuodauskas', surname: 'Perrašimauskas', university: 'VGTU', course: 1 },
     ];
+    const isStudent = (people) => {
+    };
 }
 //# sourceMappingURL=main.js.map
