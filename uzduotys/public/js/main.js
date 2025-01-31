@@ -87,7 +87,37 @@ console.group(`
         { name: 'Šidelė', surname: 'Gyslovienė', avgMonthlyPay: 1500 },
         { name: 'Užuodauskas', surname: 'Perrašimauskas', university: 'VGTU', course: 1 },
     ];
-    const isStudent = (people) => {
+    const isWorker = (person) => {
+        return person.avgMonthlyPay !== undefined;
     };
+    const isStudent = (person) => {
+        return person.university !== undefined && person.course !== undefined;
+    };
+    const solution = (people) => {
+        const groupedPeople = {
+            people: [],
+            students: [],
+            workers: [],
+        };
+        people.forEach(person => {
+            if (isWorker(person)) {
+                groupedPeople.workers.push(person);
+            }
+            else if (isStudent(person)) {
+                groupedPeople.students.push(person);
+            }
+            else {
+                groupedPeople.people.push(person);
+            }
+        });
+        return groupedPeople;
+    };
+    const workingPeople = people.filter(isWorker);
+    const studentPeople = people.filter(isStudent);
+    const groupedPeople = solution(people);
+    console.log(workingPeople);
+    console.log(studentPeople);
+    console.log(people);
+    console.log(groupedPeople);
 }
 //# sourceMappingURL=main.js.map

@@ -160,9 +160,41 @@ console.group(`
     { name: 'Užuodauskas', surname: 'Perrašimauskas', university: 'VGTU', course: 1 },
   ];
 
-  const isStudent = (people) => {
-    
+  const isWorker = (person: Person): person is Worker => {
+    return (person as Worker).avgMonthlyPay !== undefined
   }
 
+  const isStudent = (person: Person): person is Student => {
+    return (person as Student).university !== undefined && (person as Student).course !== undefined
+  }
+
+  const solution = (people: Person[]): GroupedPeople => {
+
+    const groupedPeople: GroupedPeople = {
+      people: [],
+      students: [],
+      workers: [],
+    }
+
+    people.forEach(person => {
+      if (isWorker(person)){
+        groupedPeople.workers.push(person)
+      } else if (isStudent(person)){
+        groupedPeople.students.push(person)
+      } else {
+        groupedPeople.people.push(person)
+      }
+    })
+    return groupedPeople
+  }
+
+  const workingPeople = people.filter(isWorker)
+  const studentPeople = people.filter(isStudent)
+  const groupedPeople = solution(people)
+  console.log(workingPeople)
+  console.log(studentPeople)
+  console.log(people)
+
+  console.log(groupedPeople)
 
 }
